@@ -3,7 +3,7 @@ import {useSpring, animated} from "react-spring";
 import {to} from "@react-spring/web";
 import { useMove } from "react-use-gesture";
 import styles from "./hero.module.less";
-import ParallaxBackground from "../ParallaxBackground";
+import {ParallaxBackground} from "./ParallaxBackground";
 
 function HeroSection(): ReactElement {
     const [style, api] = useSpring(() => ({x: 0,y: 0}));
