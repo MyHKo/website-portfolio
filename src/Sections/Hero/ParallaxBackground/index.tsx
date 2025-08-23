@@ -1,5 +1,6 @@
 import styles from "./parallaxBackground.module.less";
 import {type ReactElement, type RefObject, useEffect, useRef} from "react";
+import generateParticleData from "../../../Utils/generateParticleData.ts";
 
 function ParallaxBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
@@ -17,23 +18,25 @@ function ParallaxBackground(): ReactElement {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        let x:number = 0;
-        let y:number = 0;
-        const speed:number = 2;
+        const points: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
         let animationFrameId:number;
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.beginPath();
-            ctx.arc(x, y, 13, 0, 2 * Math.PI);
-            ctx.fillStyle = "rgba(0,0,0,0.6)";
-            ctx.fill();
+            for(let i=0; i<points.length; i++) {
+                ctx.beginPath();
+                ctx.arc(points[i].x, points[i].y, 13, 0, 2 * Math.PI);
+                ctx.fillStyle = "rgba(0,0,0,0.2)";
+                ctx.fill();
 
-            x+=speed;
-            if(x > canvas.width + 20){
-                x = -20;
-                y = Math.random() * canvas.height;
+                points[i].x += points[i].speedX;
+                points[i].y += points[i].speedY;
+                if (points[i].x > canvas.width + 50 || points[i].y > canvas.height + 50 ) {
+                    points[i] = generateParticleData();
+                } else if(points[i].x < -50 || points[i].y < -50){
+                    points[i] = generateParticleData();
+                }
             }
 
             animationFrameId = requestAnimationFrame(animate);
