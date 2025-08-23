@@ -1,52 +1,54 @@
 import styles from "./parallaxBackground.module.less";
-import type {ReactElement} from "react";
-import {animated, useSprings} from "@react-spring/web";
-import setAnimationCoordinatesFromTo from "../../../Utils/SetAnimationCoordinatesFromTo.ts";
+import {type ReactElement, type RefObject, useEffect, useRef} from "react";
 
 function ParallaxBackground(): ReactElement {
-    const [springs, api] = useSprings(30, (i: number) => {
-        const {from, to} = setAnimationCoordinatesFromTo()
-        return {
-            from: from,
-            to: to,
-            config: {duration: Math.random() * (12000 - 7000) + 7000},
-            onRest: () => continueAnimation(i)
-        }
-    },[])
+    const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
 
-    function continueAnimation(targetIndex: number) {
-        const {from, to} = setAnimationCoordinatesFromTo()
-        api.start((i:number) => {
-            if(i !== targetIndex)
-                return
-            return {
-                from: from,
-                to: to,
-                config: {duration: Math.random() * (12000 - 7000) + 7000},
-                onRest: () => continueAnimation(i)
+    useEffect(() => {
+        const canvas:HTMLCanvasElement | null = canvasRef.current;
+        if(!canvas){
+            return;
+        }
+        const ctx:CanvasRenderingContext2D | null = canvas.getContext("2d");
+        if(!ctx){
+            return;
+        }
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let x:number = 0;
+        let y:number = 0;
+        const speed:number = 2;
+        let animationFrameId:number;
+
+        const animate = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 13, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgba(0,0,0,0.6)";
+            ctx.fill();
+
+            x+=speed;
+            if(x > canvas.width + 20){
+                x = -20;
+                y = Math.random() * canvas.height;
             }
-        })
-    }
+
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        }
+    })
 
     return (
         <div className={styles.parallaxBackground}>
-            {
-                springs.map((style): ReactElement => {
-                    return (
-                        <animated.svg
-                        style = {{
-                            width: 30,
-                            height: 30,
-                            position: "absolute",
-                            ...style
-                        }}>
-                           <circle cx={18} cy={18} r={10} fill={"#000"} style={{
-                               opacity: "30%"
-                           }}/>
-                        </animated.svg>
-                    )
-                })
-            }
+            <canvas ref={canvasRef}/>
         </div>
     )
 }
