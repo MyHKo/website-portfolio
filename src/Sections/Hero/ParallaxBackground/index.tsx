@@ -14,8 +14,8 @@ function HeroBackground(): ReactElement {
             return;
         }
 
-        canvas.width = window.innerWidth + 20;
-        canvas.height = window.innerHeight + 20;
+        canvas.width = window.screen.width;
+        canvas.height = window.screen.height;
 
         const points: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
         let animationFrameId:number;

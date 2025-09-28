@@ -9,9 +9,9 @@ function HeroSection(): ReactElement {
             <div className={styles.half}>
                 <HeroBackground />
             </div>
-            <div className={styles.text} >
+            <span className={styles.text} >
                 Welcome.
-            </div>
+            </span>
         </section>
     )
 }
