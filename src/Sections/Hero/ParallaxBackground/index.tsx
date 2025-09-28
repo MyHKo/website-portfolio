@@ -1,8 +1,7 @@
-import styles from "./parallaxBackground.module.less";
 import {type ReactElement, type RefObject, useEffect, useRef} from "react";
 import generateParticleData from "../../../Utils/generateParticleData.ts";
 
-function ParallaxBackground(): ReactElement {
+function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -15,8 +14,8 @@ function ParallaxBackground(): ReactElement {
             return;
         }
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth + 20;
+        canvas.height = window.innerHeight + 20;
 
         const points: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
         let animationFrameId:number;
@@ -26,7 +25,7 @@ function ParallaxBackground(): ReactElement {
 
             for(let i=0; i<points.length; i++) {
                 ctx.beginPath();
-                ctx.arc(points[i].x, points[i].y, 13, 0, 2 * Math.PI);
+                ctx.arc(points[i].x, points[i].y, 20, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(0,0,0,0.2)";
                 ctx.fill();
 
@@ -50,10 +49,8 @@ function ParallaxBackground(): ReactElement {
     })
 
     return (
-        <div className={styles.parallaxBackground}>
             <canvas ref={canvasRef}/>
-        </div>
     )
 }
 
-export {ParallaxBackground}
+export {HeroBackground}
