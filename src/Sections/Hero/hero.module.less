@@ -8,21 +8,44 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header_container {
+  width: 700px;
+  display: flex;
+  justify-content: left;
+}
+
+.text_header {
+  width: 0;
+  font-size: 50px;
+  font-weight: bold;
+  background: linear-gradient(to bottom, darkgrey, black 50%);
+  background-clip: text;
+  color: transparent;
+  border-right: 2px solid;
+  z-index: 1;
+  animation:
+    blink 0.5s steps(44) 5,
+    reveal 1s steps(30) 1s 1 normal forwards,
+    remove-cursor 0s, linear 4s forwards;
+
+  @media(max-width: 340px) {
+    max-width: 80%;
+  }
 }
 
 .text {
-  width: 0;
-  font-size: 60px;
-  font-weight: bold;
-  background: black;
-  background-clip: text;
-  color: transparent;
-  border-right: 2px solid transparent;
+  width: 700px;
+  font-size: 28px;
   z-index: 1;
-  animation:
-    blink 0.7s step-end 4,
-    reveal 2s steps(120, end) 1s forwards,
-    remove-cursor 0s, linear 4s forwards;
+
+  @media(max-width: 780px) {
+    width: 80%;
+    font-size: 25px;
+  }
 }
 
 @keyframes blink {
@@ -32,7 +55,7 @@
 
 @keyframes reveal {
   from { width: 0; }
-  to { width: 280px; }
+  to { width: 240px; }
 }
 
 @keyframes remove-cursor {
