@@ -41,10 +41,25 @@
   width: 700px;
   font-size: 28px;
   z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 1s ease-out forwards;
+  animation-delay: 2.5s;
 
   @media(max-width: 780px) {
     width: 80%;
     font-size: 25px;
+  }
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
