@@ -3,6 +3,7 @@ import generateParticleData from "../../../Utils/generateParticleData.ts";
 
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
+    const particleRadius: number = 20;
 
     useEffect(() => {
         const canvas:HTMLCanvasElement | null = canvasRef.current;
@@ -20,12 +21,27 @@ function HeroBackground(): ReactElement {
         const points: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
         let animationFrameId:number;
 
+        canvas.addEventListener("click",(e: MouseEvent): void =>{
+            for(let i=0; i<points.length; i++){
+                const rect = canvas.getBoundingClientRect();
+                const x:number = e.clientX - rect.left;
+                const y:number = e.clientY - rect.top;
+
+                const dx: number = x - points[i].x;
+                const dy: number = y - points[i].y;
+                const distance: number = Math.sqrt(dx * dx + dy * dy);
+                if(distance < particleRadius){
+                    console.log("Particle was clicked");
+                }
+            }
+        })
+
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             for(let i=0; i<points.length; i++) {
                 ctx.beginPath();
-                ctx.arc(points[i].x, points[i].y, 20, 0, 2 * Math.PI);
+                ctx.arc(points[i].x, points[i].y, particleRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(0,0,0,0.2)";
                 ctx.fill();
 
