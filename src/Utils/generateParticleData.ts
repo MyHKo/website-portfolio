@@ -1,6 +1,4 @@
-function randomBetween([min, max]: [number, number]):number {
-    return Math.random() * (max - min) + min;
-}
+import randomBetween from "./randomBetween.ts";
 
 interface animationsCoordinates {
     xRange: [number, number],
