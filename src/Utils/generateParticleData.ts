@@ -13,7 +13,7 @@ function randomInwardDirection(n: [number, number]): {speedX: number; speedY: nu
     const deviation: number = (Math.random() - 0.5) * Math.PI;
     const theta: number = base + deviation;
 
-    return { speedX: Math.cos(theta)/2, speedY: Math.sin(theta)/2 };
+    return { speedX: Math.cos(theta)/2.3, speedY: Math.sin(theta)/2.3 };
 }
 
 function generateParticleData():{x:number, y:number, speedX:number, speedY:number} {
