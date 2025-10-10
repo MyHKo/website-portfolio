@@ -1,0 +1,1 @@
+export interface Particle {x:number, y:number, speedX:number, speedY:number}
