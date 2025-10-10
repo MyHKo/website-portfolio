@@ -1,5 +1,6 @@
 import {type ReactElement, type RefObject, useEffect, useRef} from "react";
 import generateParticleData from "../../../Utils/generateParticleData.ts";
+import isParticleClicked from "../../../Utils/isParticleClicked.ts";
 
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
@@ -18,39 +19,30 @@ function HeroBackground(): ReactElement {
         canvas.width = window.screen.width;
         canvas.height = window.screen.height;
 
-        const points: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
+        const particles: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
         let animationFrameId:number;
 
         canvas.addEventListener("click",(e: MouseEvent): void =>{
-            for(let i=0; i<points.length; i++){
-                const rect = canvas.getBoundingClientRect();
-                const x:number = e.clientX - rect.left;
-                const y:number = e.clientY - rect.top;
-
-                const dx: number = x - points[i].x;
-                const dy: number = y - points[i].y;
-                const distance: number = Math.sqrt(dx * dx + dy * dy);
-                if(distance < particleRadius){
-                    console.log("Particle was clicked");
-                }
+            if(isParticleClicked(particleRadius, particles, e, canvas)){
+                console.log("clicked");
             }
         })
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            for(let i=0; i<points.length; i++) {
+            for(let i=0; i<particles.length; i++) {
                 ctx.beginPath();
-                ctx.arc(points[i].x, points[i].y, particleRadius, 0, 2 * Math.PI);
+                ctx.arc(particles[i].x, particles[i].y, particleRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgba(0,0,0,0.2)";
                 ctx.fill();
 
-                points[i].x += points[i].speedX;
-                points[i].y += points[i].speedY;
-                if (points[i].x > canvas.width + 50 || points[i].y > canvas.height + 50 ) {
-                    points[i] = generateParticleData();
-                } else if(points[i].x < -50 || points[i].y < -50){
-                    points[i] = generateParticleData();
+                particles[i].x += particles[i].speedX;
+                particles[i].y += particles[i].speedY;
+                if (particles[i].x > canvas.width + 50 || particles[i].y > canvas.height + 50 ) {
+                    particles[i] = generateParticleData();
+                } else if(particles[i].x < -50 || particles[i].y < -50){
+                    particles[i] = generateParticleData();
                 }
             }
 
