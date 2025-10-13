@@ -1,6 +1,10 @@
 import {type ReactElement, type RefObject, useEffect, useRef} from "react";
 import generateParticleData from "../../../Utils/generateParticleData.ts";
 import isParticleClicked from "../../../Utils/isParticleClicked.ts";
+import randomBetween from "../../../Utils/randomBetween.ts";
+import type {Particle} from "../../../Interfaces/Particle.ts";
+import type {PopParticle} from "../../../Interfaces/PopParticle.ts";
+import generatePopParticleData from "../../../Utils/generatePopParticleData.ts";
 
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
@@ -19,12 +23,19 @@ function HeroBackground(): ReactElement {
         canvas.width = window.screen.width;
         canvas.height = window.screen.height;
 
-        const particles: {x:number, y:number, speedX:number, speedY:number}[] = Array.from({length: 30}, () => generateParticleData());
+        const particles: Particle[] = Array.from({length: 30}, () => generateParticleData());
+        const popParticles: Set<PopParticle> = new Set;
         let animationFrameId:number;
 
-        canvas.addEventListener("click",(e: MouseEvent): void =>{
-            if(isParticleClicked(particleRadius, particles, e, canvas)){
-                console.log("clicked");
+        canvas.addEventListener("click", (e: MouseEvent): void =>{
+            const rect:DOMRect = canvas.getBoundingClientRect();
+            for(const particle of particles){
+                if(isParticleClicked(particleRadius, particle, e, rect)){
+                    particle.x = -51;
+                    for(let i:number = 0; i< randomBetween([3,7]);i++){
+                        popParticles.add(generatePopParticleData(particle.x, particle.y));
+                    }
+                }
             }
         })
 
@@ -43,6 +54,29 @@ function HeroBackground(): ReactElement {
                     particles[i] = generateParticleData();
                 } else if(particles[i].x < -50 || particles[i].y < -50){
                     particles[i] = generateParticleData();
+                }
+            }
+
+            if(popParticles.size){
+                const iterator = popParticles.values()
+                while (true) {
+                    const particle:PopParticle|undefined = iterator.next().value;
+                    if(!particle){
+                        break;
+                    }
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particleRadius, 0, 2 * Math.PI);
+                    ctx.fillStyle = particle.colour;
+                    ctx.fill();
+
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    particle.speedX = particle.speedX / 1.2;
+                    particle.speedY = particle.speedY / 1.2;
+                    particle.age += 1;
+                    if(particle.age === 120){
+                        popParticles.delete(particle)
+                    }
                 }
             }
 
