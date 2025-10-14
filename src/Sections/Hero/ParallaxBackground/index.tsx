@@ -31,7 +31,7 @@ function HeroBackground(): ReactElement {
             const rect:DOMRect = canvas.getBoundingClientRect();
             for(const particle of particles){
                 if(isParticleClicked(particleRadius, particle, e, rect)){
-                    for(let i:number = 0; i< randomBetween([2,5]);i++){
+                    for(let i:number = 0; i< randomBetween([3,7]);i++){
                         popParticles.add(generatePopParticleData(particle.x, particle.y));
                     }
                     particle.x = -51;
@@ -73,11 +73,11 @@ function HeroBackground(): ReactElement {
 
                     particle.x += particle.speedX;
                     particle.y += particle.speedY;
-                    particle.speedX = particle.speedX / 1.01;
-                    particle.speedY = particle.speedY / 1.01;
+                    particle.speedX = particle.speedX / 1.005;
+                    particle.speedY = particle.speedY / 1.005;
                     particle.age += 1;
-                    particle.opacity /= 1.03;
-                    if(particle.age === 180){
+                    particle.opacity /= 1.018;
+                    if(particle.age === 240){
                         popParticles.delete(particle)
                     }
                 }
