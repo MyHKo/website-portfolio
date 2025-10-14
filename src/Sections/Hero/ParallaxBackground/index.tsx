@@ -45,7 +45,8 @@ function HeroBackground(): ReactElement {
             for(let i=0; i<particles.length; i++) {
                 ctx.beginPath();
                 ctx.arc(particles[i].x, particles[i].y, particleRadius, 0, 2 * Math.PI);
-                ctx.fillStyle = "rgba(0,0,0,0.2)";
+                ctx.fillStyle = "rgb(0,0,0)";
+                ctx.globalAlpha = 0.2;
                 ctx.fill();
 
                 particles[i].x += particles[i].speedX;
@@ -67,6 +68,7 @@ function HeroBackground(): ReactElement {
                     ctx.beginPath();
                     ctx.arc(particle.x, particle.y, 12, 0, 2 * Math.PI);
                     ctx.fillStyle = particle.colour;
+                    ctx.globalAlpha = particle.opacity;
                     ctx.fill();
 
                     particle.x += particle.speedX;
@@ -74,7 +76,8 @@ function HeroBackground(): ReactElement {
                     particle.speedX = particle.speedX / 1.01;
                     particle.speedY = particle.speedY / 1.01;
                     particle.age += 1;
-                    if(particle.age === 120){
+                    particle.opacity /= 1.03;
+                    if(particle.age === 180){
                         popParticles.delete(particle)
                     }
                 }

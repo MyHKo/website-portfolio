@@ -1,1 +1,1 @@
-export interface PopParticle {x:number, y:number, speedX:number, speedY:number, colour: string, age:number}
+export interface PopParticle {x:number, y:number, speedX:number, speedY:number, colour: string, opacity: number, age:number}

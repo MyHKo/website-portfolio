@@ -10,7 +10,8 @@ function generatePopParticleData(x: number, y: number): PopParticle {
     return {
         x: x,
         y: y,
-        colour: `rgba(${randomBetween([0,255])}, ${randomBetween([0,255])}, ${randomBetween([0,255])}, 1)`,
+        colour: `rgba(${randomBetween([0,255])}, ${randomBetween([0,255])}, ${randomBetween([0,255])})`,
+        opacity: 0.7,
         age: 1,
         ...randomDirection()
     }
