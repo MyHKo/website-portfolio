@@ -1,16 +1,20 @@
-import type { ReactElement } from "react";
+import {type MouseEventHandler, type ReactElement} from "react";
 import styles from "./hero.module.less";
 import {HeroBackground} from "./ParallaxBackground";
 
 function HeroSection(): ReactElement {
+    const canvas:HTMLElement|null = document.getElementById("canvas");
 
     return (
         <section className={styles.section}>
             <div className={styles.half}>
-                <HeroBackground />
+            <HeroBackground />
             </div>
-            <div className={styles.header_container}>
-            <span className={styles.text_header} >
+            <div onClick={(event) => {
+                if(canvas)
+                    canvas.dispatchEvent(event);
+            }} className={styles.header_container}>
+                <span className={styles.text_header} >
                 Welcome.
             </span>
             </div>
