@@ -94,7 +94,7 @@ function HeroBackground(): ReactElement {
     })
 
     return (
-            <canvas ref={canvasRef}/>
+            <canvas ref={canvasRef} id={"canvas"}/>
     )
 }
 
