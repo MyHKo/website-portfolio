@@ -46,7 +46,7 @@ function HeroBackground(): ReactElement {
                 ctx.beginPath();
                 ctx.arc(particles[i].x, particles[i].y, particleRadius, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgb(0,0,0)";
-                ctx.globalAlpha = 0.2;
+                ctx.globalAlpha = 0.15;
                 ctx.fill();
 
                 particles[i].x += particles[i].speedX;

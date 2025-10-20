@@ -1,19 +1,16 @@
-import {type MouseEventHandler, type ReactElement} from "react";
+import {type ReactElement} from "react";
 import styles from "./hero.module.less";
 import {HeroBackground} from "./ParallaxBackground";
+import NavBar from "./NavBar";
 
 function HeroSection(): ReactElement {
-    const canvas:HTMLElement|null = document.getElementById("canvas");
 
     return (
         <section className={styles.section}>
             <div className={styles.half}>
             <HeroBackground />
             </div>
-            <div onClick={(event) => {
-                if(canvas)
-                    canvas.dispatchEvent(event);
-            }} className={styles.header_container}>
+            <div className={styles.header_container}>
                 <span className={styles.text_header} >
                 Welcome.
             </span>
@@ -23,6 +20,7 @@ function HeroSection(): ReactElement {
                 I am a software developer, who sees writing code as an art.
                 It is a wonderful possibility to express oneself as well as help others express their ideas.
             </span>
+            <NavBar />
         </section>
     )
 }
