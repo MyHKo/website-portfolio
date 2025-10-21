@@ -27,7 +27,7 @@ function HeroBackground(): ReactElement {
         const popParticles: Set<PopParticle> = new Set;
         let animationFrameId:number;
 
-        canvas.addEventListener("click", (e: MouseEvent): void =>{
+        canvas.addEventListener("mousemove", (e: MouseEvent): void =>{
             const rect:DOMRect = canvas.getBoundingClientRect();
             for(const particle of particles){
                 if(isParticleClicked(particleRadius, particle, e, rect)){
