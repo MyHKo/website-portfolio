@@ -9,6 +9,7 @@ import generatePopParticleData from "../../../Utils/generatePopParticleData.ts";
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
     const particleRadius: number = 20;
+    const mousePos: {x: number, y: number} = {x: 0, y: 0};
 
     useEffect(() => {
         const canvas:HTMLCanvasElement | null = canvasRef.current;
@@ -28,9 +29,11 @@ function HeroBackground(): ReactElement {
         let animationFrameId:number;
 
         canvas.addEventListener("mousemove", (e: MouseEvent): void =>{
+            mousePos.x = e.clientX;
+            mousePos.y = e.clientY;
             const rect:DOMRect = canvas.getBoundingClientRect();
             for(const particle of particles){
-                if(isParticleClicked(particleRadius, particle, e, rect)){
+                if(isParticleClicked(particleRadius, particle, e.clientX, e.clientY, rect)){
                     for(let i:number = 0; i< randomBetween([3,7]);i++){
                         popParticles.add(generatePopParticleData(particle.x, particle.y));
                     }
@@ -49,8 +52,17 @@ function HeroBackground(): ReactElement {
                 ctx.globalAlpha = 0.15;
                 ctx.fill();
 
-                particles[i].x += particles[i].speedX;
-                particles[i].y += particles[i].speedY;
+                if(isParticleClicked(particleRadius, particles[i], mousePos.x, mousePos.y, canvas.getBoundingClientRect())) {
+                    for (let j: number = 0; j < randomBetween([3, 7]); j++) {
+                        popParticles.add(generatePopParticleData(particles[i].x, particles[i].y));
+                    }
+                    particles[i].x = -51;
+                }
+                else {
+                    particles[i].y += particles[i].speedY;
+                    particles[i].x += particles[i].speedX;
+                }
+
                 if (particles[i].x > canvas.width + 50 || particles[i].y > canvas.height + 50 ) {
                     particles[i] = generateParticleData();
                 } else if(particles[i].x < -50 || particles[i].y < -50){

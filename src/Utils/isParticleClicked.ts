@@ -1,6 +1,6 @@
-function isParticleClicked(particleRadius: number, particle: {x:number, y:number, speedX:number, speedY:number}, event: MouseEvent, rect: DOMRect): boolean {
-        const x:number = event.clientX - rect.left;
-        const y:number = event.clientY - rect.top;
+function isParticleClicked(particleRadius: number, particle: {x:number, y:number, speedX:number, speedY:number}, eventX: number, eventY: number, rect: DOMRect): boolean {
+        const x:number = eventX - rect.left;
+        const y:number = eventY - rect.top;
 
         const dx: number = x - particle.x;
         const dy: number = y - particle.y;
