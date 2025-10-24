@@ -5,6 +5,7 @@ import randomBetween from "../../../Utils/randomBetween.ts";
 import type {Particle} from "../../../Interfaces/Particle.ts";
 import type {PopParticle} from "../../../Interfaces/PopParticle.ts";
 import generatePopParticleData from "../../../Utils/generatePopParticleData.ts";
+import type {TrailParticle} from "../../../Interfaces/TrailParticle.ts";
 
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
@@ -26,6 +27,7 @@ function HeroBackground(): ReactElement {
 
         const particles: Particle[] = Array.from({length: 30}, () => generateParticleData());
         const popParticles: Set<PopParticle> = new Set;
+        const trailParticles: Set<TrailParticle> = new Set;
         let animationFrameId:number;
 
         canvas.addEventListener("mousemove", (e: MouseEvent): void =>{
@@ -40,6 +42,7 @@ function HeroBackground(): ReactElement {
                     particle.x = -51;
                 }
             }
+            trailParticles.add({x: e.clientX, y: e.clientY, opacity: 1, radius: 12});
         })
 
         const animate = () => {
@@ -91,6 +94,27 @@ function HeroBackground(): ReactElement {
                     particle.opacity /= 1.018;
                     if(particle.age === 240){
                         popParticles.delete(particle)
+                    }
+                }
+            }
+
+            if(trailParticles.size){
+                const iterator = trailParticles.values()
+                while (true) {
+                    const particle:TrailParticle|undefined = iterator.next().value;
+                    if(!particle){
+                        break;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, 12, 0, 2 * Math.PI);
+                    ctx.fillStyle = "black";
+                    ctx.globalAlpha = particle.opacity;
+                    ctx.fill();
+
+                    particle.opacity /= 1.018;
+                    if(particle.opacity < 0.01){
+                        trailParticles.delete(particle)
                     }
                 }
             }
