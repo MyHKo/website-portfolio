@@ -108,11 +108,11 @@ function HeroBackground(): ReactElement {
 
                     ctx.beginPath();
                     ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#4b9cff";
+                    ctx.fillStyle = "#grey";
                     ctx.globalAlpha = particle.opacity;
                     ctx.fill();
 
-                    particle.radius /= 1.02;
+                    particle.radius /= 1.019;
                     particle.opacity /= 1.01;
                     if(particle.opacity < 0.01){
                         trailParticles.delete(particle)
