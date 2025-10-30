@@ -42,7 +42,7 @@ function HeroBackground(): ReactElement {
                     particle.x = -51;
                 }
             }
-            trailParticles.add({x: e.clientX + 2, y: e.clientY+7, opacity: 1, radius: 3});
+            trailParticles.add({x: e.clientX + 8, y: e.clientY+12, opacity: 1, radius: 3});
         })
 
         const animate = () => {
@@ -108,12 +108,13 @@ function HeroBackground(): ReactElement {
 
                     ctx.beginPath();
                     ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI);
-                    ctx.fillStyle = "#grey";
+                    ctx.fillStyle = "#CF1259";
                     ctx.globalAlpha = particle.opacity;
                     ctx.fill();
 
-                    particle.radius /= 1.019;
-                    particle.opacity /= 1.01;
+                    if(particle.radius < 15)
+                        particle.radius += 0.3
+                    particle.opacity /= 1.1;
                     if(particle.opacity < 0.01){
                         trailParticles.delete(particle)
                     }
