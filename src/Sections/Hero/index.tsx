@@ -1,15 +1,11 @@
 import {type ReactElement} from "react";
 import styles from "./hero.module.less";
-import {HeroBackground} from "./ParallaxBackground";
 import NavBar from "./NavBar";
 
 function HeroSection(): ReactElement {
 
     return (
         <section className={styles.section}>
-            <div className={styles.half}>
-            <HeroBackground />
-            </div>
             <div className={styles.header_container}>
                 <span className={styles.text_header} >
                 Welcome.
