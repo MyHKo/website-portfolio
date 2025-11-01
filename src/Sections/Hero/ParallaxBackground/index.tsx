@@ -6,6 +6,7 @@ import type {Particle} from "../../../Interfaces/Particle.ts";
 import type {PopParticle} from "../../../Interfaces/PopParticle.ts";
 import generatePopParticleData from "../../../Utils/generatePopParticleData.ts";
 import type {TrailParticle} from "../../../Interfaces/TrailParticle.ts";
+import './parallaxBackground.module.less'
 
 function HeroBackground(): ReactElement {
     const canvasRef:RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null);
