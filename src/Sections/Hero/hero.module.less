@@ -11,8 +11,14 @@
   flex-direction: column;
   gap: 2rem;
   border-radius: 10px;
-  border: 3px solid grey;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 3px 4px rgba(0, 0, 0, 0.3);
+
+  @media(max-width: 450px) {
+    padding: 70px 70px 70px 70px;
+  }
+  @media(max-width: 400px) {
+    padding: 70px 50px 70px 50px;
+  }
 }
 
 .header_container {
@@ -29,7 +35,7 @@
   width: 0;
   font-size: 50px;
   font-weight: bold;
-  background: linear-gradient(to bottom, darkgrey, black 50%);
+  background: linear-gradient(to bottom, white, #006BA6 50%);
   background-clip: text;
   color: transparent;
   border-right: 2px solid;
