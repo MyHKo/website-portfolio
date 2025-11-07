@@ -1,17 +1,13 @@
-import styles from "./navbar.module.less"
+import {type ReactElement} from "react";
+import styles from "./headerNavBar.module.less";
 
-interface NavbarProps {
+interface HeaderNavBarProps {
     onNavigate: (page: string) => void;
 }
 
-function Navbar({ onNavigate }: NavbarProps) {
-
+function HeaderNavBar({ onNavigate }: HeaderNavBarProps): ReactElement {
     return (
-        <nav className={styles.navbar}>
-            <div className={`${styles.brace} ${styles.leftUp}`}></div>
-            <div className={`${styles.brace} ${styles.leftDown}`}></div>
-            <div className={`${styles.brace} ${styles.rightUp}`}></div>
-            <div className={`${styles.brace} ${styles.rightDown}`}></div>
+        <nav className={styles.headerNavbar}>
             <ul className={styles.list}>
                 <li>
                     <a 
@@ -20,6 +16,7 @@ function Navbar({ onNavigate }: NavbarProps) {
                             e.preventDefault();
                             onNavigate('about');
                         }}
+                        style={{ color: '#006BA6', cursor: 'default' }}
                     >
                         About
                     </a>
@@ -48,7 +45,8 @@ function Navbar({ onNavigate }: NavbarProps) {
                 </li>
             </ul>
         </nav>
-    )
+    );
 }
 
-export default Navbar;
+export default HeaderNavBar;
+

@@ -2,7 +2,11 @@ import {type ReactElement} from "react";
 import styles from "./hero.module.less";
 import NavBar from "./NavBar";
 
-function HeroSection(): ReactElement {
+interface HeroSectionProps {
+    onNavigate: (page: string) => void;
+}
+
+function HeroSection({ onNavigate }: HeroSectionProps): ReactElement {
 
     return (
         <section className={styles.section}>
@@ -16,7 +20,7 @@ function HeroSection(): ReactElement {
                 I am a software developer, who sees writing code as an art.
                 It is a wonderful possibility to express oneself as well as help others express their ideas.
             </span>
-            <NavBar />
+            <NavBar onNavigate={onNavigate} />
         </section>
     )
 }
