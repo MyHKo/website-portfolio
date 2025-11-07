@@ -11,7 +11,10 @@ function App() {
   const isHomePage = location.pathname === '/';
 
   return (
-    <main onMouseMove={(e):void => {
+    <main
+      className={styles.main}
+      style={{ overflowY: isHomePage ? 'hidden' : 'auto' }}
+      onMouseMove={(e):void => {
         if (isHomePage) {
           e.stopPropagation();
           const canvas: HTMLElement | null = document.getElementById("canvas");
@@ -21,7 +24,8 @@ function App() {
               bubbles: false,
           }));
         }
-    }}>
+    }}
+    >
         {isHomePage && (
           <div className={styles.canvas_container}>
             <HeroBackground />

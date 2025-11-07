@@ -22,14 +22,19 @@ function HeroBackground(): ReactElement {
             return;
         }
 
-        canvas.width = window.screen.width;
-        canvas.height = window.screen.height;
+        const setCanvasSize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        setCanvasSize();
+        window.addEventListener("resize", setCanvasSize);
 
         const particles: Particle[] = Array.from({length: 30}, () => generateParticleData());
         const popParticles: Set<PopParticle> = new Set;
         let animationFrameId:number;
 
-        canvas.addEventListener("mousemove", (e: MouseEvent): void =>{
+        const handleMouseMove = (e: MouseEvent): void =>{
             mousePos.x = e.clientX;
             mousePos.y = e.clientY;
             const rect:DOMRect = canvas.getBoundingClientRect();
@@ -41,7 +46,9 @@ function HeroBackground(): ReactElement {
                     particle.x = -51;
                 }
             }
-        })
+        };
+
+        canvas.addEventListener("mousemove", handleMouseMove);
 
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,8 +110,10 @@ function HeroBackground(): ReactElement {
 
         return () => {
             cancelAnimationFrame(animationFrameId);
+            canvas.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("resize", setCanvasSize);
         }
-    })
+    }, [])
 
     return (
             <canvas ref={canvasRef} id={"canvas"}/>
