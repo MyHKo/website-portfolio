@@ -1,7 +1,7 @@
 import {type ReactElement} from "react";
 import styles from "./projects.module.less";
 import HeaderNavBar from "../About/HeaderNavBar";
-import StaticBackground from "../About/StaticBackground";
+import StaticBackground from "../../backgrounds/StaticBackground";
 
 function ProjectsSection(): ReactElement {
     return (

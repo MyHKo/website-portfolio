@@ -4,7 +4,7 @@ import AboutSection from './Sections/About'
 import ProjectsSection from './Sections/Projects'
 import ContactSection from './Sections/Contact'
 import styles from './App.module.less'
-import {HeroBackground} from "./Sections/Hero/HeroBackground";
+import {HeroBackground} from "./backgrounds/HeroBackground";
 
 function App() {
   const location = useLocation();

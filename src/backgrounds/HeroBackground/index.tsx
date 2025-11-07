@@ -1,10 +1,10 @@
 import {type ReactElement, type RefObject, useEffect, useRef} from "react";
-import generateParticleData from "../../../Utils/generateParticleData.ts";
-import isParticleClicked from "../../../Utils/isParticleClicked.ts";
-import randomBetween from "../../../Utils/randomBetween.ts";
-import type {Particle} from "../../../Interfaces/Particle.ts";
-import type {PopParticle} from "../../../Interfaces/PopParticle.ts";
-import generatePopParticleData from "../../../Utils/generatePopParticleData.ts";
+import generateParticleData from "../../Utils/generateParticleData.ts";
+import isParticleClicked from "../../Utils/isParticleClicked.ts";
+import randomBetween from "../../Utils/randomBetween.ts";
+import type {Particle} from "../../Interfaces/Particle.ts";
+import type {PopParticle} from "../../Interfaces/PopParticle.ts";
+import generatePopParticleData from "../../Utils/generatePopParticleData.ts";
 import './heroBackground.module.less'
 
 function HeroBackground(): ReactElement {
