@@ -1,6 +1,6 @@
 import HeroSection from './Sections/Hero'
 import styles from './App.module.less'
-import {HeroBackground} from "./Sections/Hero/ParallaxBackground";
+import {HeroBackground} from "./Sections/Hero/HeroBackground";
 
 function App() {
   return (
