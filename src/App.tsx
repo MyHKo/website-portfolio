@@ -1,26 +1,18 @@
-import { useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import HeroSection from './Sections/Hero'
 import AboutSection from './Sections/About'
+import ProjectsSection from './Sections/Projects'
+import ContactSection from './Sections/Contact'
 import styles from './App.module.less'
 import {HeroBackground} from "./Sections/Hero/HeroBackground";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'projects' | 'contact'>('home');
-
-  const handleNavigate = (page: string) => {
-    if (page === 'about') {
-      setCurrentPage('about');
-    } else if (page === 'home') {
-      setCurrentPage('home');
-    } else {
-      // For now, just handle about and home
-      setCurrentPage(page as 'home' | 'about' | 'projects' | 'contact');
-    }
-  };
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   return (
     <main onMouseMove={(e):void => {
-        if (currentPage === 'home') {
+        if (isHomePage) {
           e.stopPropagation();
           const canvas: HTMLElement | null = document.getElementById("canvas");
           canvas?.dispatchEvent(new MouseEvent('mousemove', {
@@ -30,13 +22,17 @@ function App() {
           }));
         }
     }}>
-        {currentPage === 'home' && (
+        {isHomePage && (
           <div className={styles.canvas_container}>
             <HeroBackground />
           </div>
         )}
-        {currentPage === 'home' && <HeroSection onNavigate={handleNavigate} />}
-        {currentPage === 'about' && <AboutSection onNavigate={handleNavigate} />}
+        <Routes>
+          <Route path="/" element={<HeroSection />} />
+          <Route path="/about" element={<AboutSection />} />
+          <Route path="/projects" element={<ProjectsSection />} />
+          <Route path="/contact" element={<ContactSection />} />
+        </Routes>
     </main>
   )
 }

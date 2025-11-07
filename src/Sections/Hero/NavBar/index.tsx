@@ -1,10 +1,7 @@
+import { Link } from "react-router-dom";
 import styles from "./navbar.module.less"
 
-interface NavbarProps {
-    onNavigate: (page: string) => void;
-}
-
-function Navbar({ onNavigate }: NavbarProps) {
+function Navbar() {
 
     return (
         <nav className={styles.navbar}>
@@ -14,37 +11,19 @@ function Navbar({ onNavigate }: NavbarProps) {
             <div className={`${styles.brace} ${styles.rightDown}`}></div>
             <ul className={styles.list}>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('about');
-                        }}
-                    >
+                    <Link to="/about">
                         About
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('projects');
-                        }}
-                    >
+                    <Link to="/projects">
                         Projects
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('contact');
-                        }}
-                    >
+                    <Link to="/contact">
                         Contact
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

@@ -1,47 +1,45 @@
 import {type ReactElement} from "react";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./headerNavBar.module.less";
 
-interface HeaderNavBarProps {
-    onNavigate: (page: string) => void;
-}
-
-function HeaderNavBar({ onNavigate }: HeaderNavBarProps): ReactElement {
+function HeaderNavBar(): ReactElement {
+    const location = useLocation();
+    
     return (
         <nav className={styles.headerNavbar}>
             <ul className={styles.list}>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('about');
+                    <Link 
+                        to="/about"
+                        style={{ 
+                            color: location.pathname === '/about' ? '#006BA6' : '#333',
+                            cursor: location.pathname === '/about' ? 'default' : 'pointer'
                         }}
-                        style={{ color: '#006BA6', cursor: 'default' }}
                     >
                         About
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('projects');
+                    <Link 
+                        to="/projects"
+                        style={{ 
+                            color: location.pathname === '/projects' ? '#006BA6' : '#333',
+                            cursor: location.pathname === '/projects' ? 'default' : 'pointer'
                         }}
                     >
                         Projects
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a 
-                        href="#" 
-                        onClick={(e) => {
-                            e.preventDefault();
-                            onNavigate('contact');
+                    <Link 
+                        to="/contact"
+                        style={{ 
+                            color: location.pathname === '/contact' ? '#006BA6' : '#333',
+                            cursor: location.pathname === '/contact' ? 'default' : 'pointer'
                         }}
                     >
                         Contact
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

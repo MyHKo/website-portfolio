@@ -3,15 +3,11 @@ import styles from "./about.module.less";
 import HeaderNavBar from "./HeaderNavBar";
 import StaticBackground from "./StaticBackground";
 
-interface AboutSectionProps {
-    onNavigate: (page: string) => void;
-}
-
-function AboutSection({ onNavigate }: AboutSectionProps): ReactElement {
+function AboutSection(): ReactElement {
     return (
         <>
             <StaticBackground />
-            <HeaderNavBar onNavigate={onNavigate} />
+            <HeaderNavBar />
             <section className={styles.section}>
                 <div className={styles.header_container}>
                     <span className={styles.text_header}>
