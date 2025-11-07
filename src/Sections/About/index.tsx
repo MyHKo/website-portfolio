@@ -1,6 +1,6 @@
 import {type ReactElement} from "react";
 import styles from "./about.module.less";
-import HeaderNavBar from "./HeaderNavBar";
+import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
 
 function AboutSection(): ReactElement {
