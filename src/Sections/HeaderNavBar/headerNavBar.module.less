@@ -25,13 +25,16 @@
   }
 }
 
-.headerNavbar a {
+.link {
   text-decoration: none;
   color: #333;
   font-size: 1.1rem;
   font-weight: bold;
   font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
     color: #006BA6;
@@ -40,5 +43,33 @@
   @media(max-width: 450px) {
     font-size: 1rem;
   }
+}
+
+.linkActive {
+  color: #006BA6;
+  cursor: default;
+  pointer-events: none;
+}
+
+.homeLink {
+  gap: 0.4rem;
+}
+
+.homeLink:hover {
+  transform: translateX(-6px);
+}
+
+.homeArrow {
+  display: inline-flex;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.homeLink:hover .homeArrow {
+  transform: translateX(-4px);
 }
 

@@ -4,39 +4,50 @@ import styles from "./headerNavBar.module.less";
 
 function HeaderNavBar(): ReactElement {
     const location = useLocation();
+    const isActive = (path: string) => location.pathname === path;
     
     return (
         <nav className={styles.headerNavbar}>
             <ul className={styles.list}>
                 <li>
-                    <Link 
+                    <Link
+                        to="/"
+                        className={`${styles.link} ${styles.homeLink} ${isActive('/') ? styles.linkActive : ''}`.trim()}
+                    >
+                        <svg
+                            aria-hidden="true"
+                            className={styles.homeArrow}
+                            viewBox="0 0 1024 1024"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z"
+                                fill="currentColor"
+                            />
+                        </svg>
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         to="/about"
-                        style={{ 
-                            color: location.pathname === '/about' ? '#006BA6' : '#333',
-                            cursor: location.pathname === '/about' ? 'default' : 'pointer'
-                        }}
+                        className={`${styles.link} ${isActive('/about') ? styles.linkActive : ''}`.trim()}
                     >
                         About
                     </Link>
                 </li>
                 <li>
-                    <Link 
+                    <Link
                         to="/projects"
-                        style={{ 
-                            color: location.pathname === '/projects' ? '#006BA6' : '#333',
-                            cursor: location.pathname === '/projects' ? 'default' : 'pointer'
-                        }}
+                        className={`${styles.link} ${isActive('/projects') ? styles.linkActive : ''}`.trim()}
                     >
                         Projects
                     </Link>
                 </li>
                 <li>
-                    <Link 
+                    <Link
                         to="/contact"
-                        style={{ 
-                            color: location.pathname === '/contact' ? '#006BA6' : '#333',
-                            cursor: location.pathname === '/contact' ? 'default' : 'pointer'
-                        }}
+                        className={`${styles.link} ${isActive('/contact') ? styles.linkActive : ''}`.trim()}
                     >
                         Contact
                     </Link>
