@@ -21,7 +21,13 @@ function ProjectsSection(): ReactElement {
                     Here you will find my projects and work.
                 </span>
                 <div className={styles.projectsContainer}>
-                    <ProjectItem imageUrl={diplomaImg} />
+                    <ProjectItem name="SocialSphere"
+                                 description="SocialSphere is a project created alongside the diploma thesis.
+                    It is a social media application, which allows users to create and interact with posts.
+                    The application is built using JavaScript + React and Java + Spring.
+                    Backend communicates with a database, which is PostgreSQL.
+                    Everything can be containerized and deployed using Docker."
+                                 imageUrl={diplomaImg} />
                 </div>
             </section>
         </>
