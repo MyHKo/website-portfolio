@@ -1,5 +1,5 @@
 import {type ReactElement} from "react";
-import styles from "./about.module.less";
+import sharedStyles from "../../styles/sharedStaticStyles.module.less";
 import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
 
@@ -8,13 +8,13 @@ function AboutSection(): ReactElement {
         <>
             <StaticBackground />
             <HeaderNavBar />
-            <section className={styles.section}>
-                <div className={styles.header_container}>
-                    <span className={styles.text_header}>
+            <section className={sharedStyles.section}>
+                <div className={sharedStyles.header_container}>
+                    <span className={sharedStyles.text_header}>
                         About.
                     </span>
                 </div>
-                <span className={styles.text}>
+                <span className={sharedStyles.text}>
                     Let this website be my window to talk to the world and share what have I done.
                     I am a software developer, who sees writing code as an art.
                     It is a wonderful possibility to express oneself as well as help others express their ideas.

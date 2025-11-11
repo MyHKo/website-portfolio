@@ -2,6 +2,12 @@
   width: 95%;
   cursor: pointer;
   font-family: Arial, sans-serif;
+  @media(max-width: 780px) {
+    width: 95%;
+  }
+  @media(max-width: 600px) {
+    width: 110%;
+  }
 }
 
 .mediaWrapper {
@@ -34,7 +40,7 @@
 }
 
 .projectName {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
   margin: 18px 0 0 0;
   background: linear-gradient(to bottom, white, #006BA6 50%);
@@ -42,11 +48,25 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+
+  @media(max-width: 780px) {
+    font-size: 1.75rem;
+  }
+  @media(max-width: 600px) {
+    font-size: 1.5rem;
+  }
 }
 
 .projectDescription {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #333;
   margin-top: 5px;
+
+  @media(max-width: 780px) {
+    font-size: 1.2rem;
+  }
+  @media(max-width: 600px) {
+    font-size: 1rem;
+  }
 }
 

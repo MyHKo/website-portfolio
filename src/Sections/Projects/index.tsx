@@ -1,5 +1,6 @@
 import {type ReactElement} from "react";
 import styles from "./projects.module.less";
+import sharedStyles from "../../styles/sharedStaticStyles.module.less";
 import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
 import ProjectItem from "./ProjectItem/ProjectItem";
@@ -11,13 +12,13 @@ function ProjectsSection(): ReactElement {
         <>
             <StaticBackground />
             <HeaderNavBar />
-            <section className={styles.section}>
-                <div className={styles.header_container}>
-                    <span className={styles.text_header}>
+            <section className={sharedStyles.section}>
+                <div className={sharedStyles.header_container}>
+                    <span className={sharedStyles.text_header}>
                         Projects.
                     </span>
                 </div>
-                <span className={styles.text}>
+                <span className={sharedStyles.text}>
                     Here you will find my projects and work.
                 </span>
                 <div className={styles.projectsContainer}>
