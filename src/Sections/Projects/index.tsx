@@ -19,7 +19,7 @@ function ProjectsSection(): ReactElement {
                     </span>
                 </div>
                 <span className={sharedStyles.text}>
-                    Here you will find my projects and work.
+                    Here you will find a list of projects I've worked on.
                 </span>
                 <div className={styles.projectsContainer}>
                     <ProjectItem name="SocialSphere"

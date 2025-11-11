@@ -15,9 +15,9 @@ function AboutSection(): ReactElement {
                     </span>
                 </div>
                 <span className={sharedStyles.text}>
-                    Let this website be my window to talk to the world and share what have I done.
-                    I am a software developer, who sees writing code as an art.
-                    It is a wonderful possibility to express oneself as well as help others express their ideas.
+                    I'm Nick. A passion-driven fullstack developer, who helps other to bring their ideas to life.
+                    With my hands I build projects with great and engaging user-experiences.
+                    My solutions are optimized, reliable and secure.
                 </span>
             </section>
         </>
