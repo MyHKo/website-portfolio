@@ -2,7 +2,7 @@ import {type ReactElement} from "react";
 import sharedStyles from "../../styles/sharedStaticStyles.module.less";
 import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
-import IconLink from "./IconLink/IconLink.tsx";
+import IconLink from "../components/IconLink/IconLink.tsx";
 
 function ContactSection(): ReactElement {
 

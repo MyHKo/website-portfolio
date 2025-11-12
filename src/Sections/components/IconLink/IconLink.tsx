@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './IconLink.module.less';
+import styles from './iconLink.module.less';
 
 interface IconLinkProps {
     icon: React.ReactNode;
