@@ -1,5 +1,6 @@
 import {type ReactElement} from "react";
 import sharedStyles from "../../styles/sharedStaticStyles.module.less";
+import styles from "./contact.module.css"
 import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
 import IconLink from "../components/IconLink/IconLink.tsx";
@@ -37,7 +38,9 @@ function ContactSection(): ReactElement {
                 <span className={sharedStyles.text}>
                     Get in touch with me.
                 </span>
-                <IconLink icon={gitHubSvg} url={"https://github.org"}/>
+                <div className={styles.linksContainer}>
+                    <IconLink icon={gitHubSvg} url={"https://github.org"}/>
+                </div>
             </section>
         </>
     )
