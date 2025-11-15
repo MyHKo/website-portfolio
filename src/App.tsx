@@ -5,6 +5,7 @@ import ProjectsSection from './Sections/Projects'
 import ContactSection from './Sections/Contact'
 import styles from './App.module.less'
 import {HeroBackground} from "./backgrounds/HeroBackground";
+import StaticBackground from "./backgrounds/StaticBackground";
 
 function App() {
   const location = useLocation();
@@ -26,11 +27,14 @@ function App() {
         }
     }}
     >
-        {isHomePage && (
+        {isHomePage ?
+            (
           <div className={styles.canvas_container}>
             <HeroBackground />
           </div>
-        )}
+        ) :
+            (<StaticBackground />)
+        }
         <Routes>
           <Route path="/" element={<HeroSection />} />
           <Route path="/about" element={<AboutSection />} />

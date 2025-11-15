@@ -2,7 +2,6 @@ import {type ReactElement} from "react";
 import sharedStyles from "../../styles/sharedStaticStyles.module.less";
 import styles from "./contact.module.css"
 import HeaderNavBar from "../HeaderNavBar";
-import StaticBackground from "../../backgrounds/StaticBackground";
 import IconLink from "../components/IconLink/IconLink.tsx";
 import gitHubIcon from "../../icons/githubIcon.tsx";
 import linkedInIcon from "../../icons/linkedInIcon.tsx";
@@ -11,7 +10,6 @@ function ContactSection(): ReactElement {
 
     return (
         <>
-            <StaticBackground />
             <HeaderNavBar />
             <section className={sharedStyles.section}>
                 <div className={sharedStyles.header_container}>

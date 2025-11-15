@@ -2,7 +2,6 @@ import {type ReactElement} from "react";
 import styles from "./projects.module.less";
 import sharedStyles from "../../styles/sharedStaticStyles.module.less";
 import HeaderNavBar from "../HeaderNavBar";
-import StaticBackground from "../../backgrounds/StaticBackground";
 import ProjectItem from "./ProjectItem/ProjectItem";
 import diplomaImg from "../../Assets/projects_images/diploma/diploma_1.png";
 import wiewwImg from "../../Assets/projects_images/wieww/wieww_1.png";
@@ -11,7 +10,6 @@ import wiewwImg from "../../Assets/projects_images/wieww/wieww_1.png";
 function ProjectsSection(): ReactElement {
     return (
         <>
-            <StaticBackground />
             <HeaderNavBar />
             <section className={sharedStyles.section}>
                 <div className={sharedStyles.header_container}>
