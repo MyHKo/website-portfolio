@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './projectItem.module.less';
 import IconLink from "../../components/IconLink/IconLink.tsx";
 import githubIcon from "../../../icons/githubIcon.tsx";
+import webIcon from "../../../icons/webIcon.tsx";
 
 type ProjectItemProps = {
     imageUrl: string;
@@ -9,16 +10,12 @@ type ProjectItemProps = {
     name: string;
     description: string;
     githubUrl?: string;
+    websiteUrl?: string;
 };
 
 
 const ProjectItem: React.FC<ProjectItemProps> = ({
-                                                     imageUrl,
-                                                     videoUrl,
-                                                     name,
-                                                     description,
-                                                     githubUrl,
-                                                 }) => {
+                           imageUrl, videoUrl, name, description, githubUrl, websiteUrl}) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -42,7 +39,10 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 
             <div className={styles.projectLinks}>
                 {githubUrl && (
-                    <IconLink icon={githubIcon} url={githubUrl} />
+                    <IconLink icon={githubIcon} url={githubUrl}/>
+                )}
+                {websiteUrl && (
+                    <IconLink icon={webIcon} url={websiteUrl} />
                 )}
             </div>
         </div>
