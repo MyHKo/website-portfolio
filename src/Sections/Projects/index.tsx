@@ -5,6 +5,7 @@ import HeaderNavBar from "../HeaderNavBar";
 import StaticBackground from "../../backgrounds/StaticBackground";
 import ProjectItem from "./ProjectItem/ProjectItem";
 import diplomaImg from "../../Assets/projects_images/diploma/diploma_1.png";
+import wiewwImg from "../../Assets/projects_images/wieww/wieww_1.png";
 
 
 function ProjectsSection(): ReactElement {
@@ -28,7 +29,13 @@ function ProjectsSection(): ReactElement {
                     The application is built using JavaScript + React and Java + Spring.
                     Backend communicates with a database, which is PostgreSQL.
                     Everything can be containerized and deployed using Docker."
-                                 imageUrl={diplomaImg} />
+                                 imageUrl={diplomaImg} githubUrl={"https://github.com/MyHKo/social-app-diploma"} />
+                    <ProjectItem name="Wieww"
+                                 description="Wieww is simple, yet stylish project.
+                                 It is a great example of how can CSS be powerful on its own.
+                                 The initial design was carefully mapped as the static website using styles and raw HTML.
+                                 Several background of different sizes and media queries allow it to a user's screen size."
+                                 imageUrl={wiewwImg} githubUrl={"https://github.com/MyHKo/wieww"} />
                 </div>
             </section>
         </>

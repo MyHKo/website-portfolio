@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import styles from './projectItem.module.less';
+import IconLink from "../../components/IconLink/IconLink.tsx";
+import githubIcon from "../../../icons/githubIcon.tsx";
 
-interface ProjectItemProps {
+type ProjectItemProps = {
     imageUrl: string;
     videoUrl?: string;
     name: string;
     description: string;
-}
+    githubUrl?: string;
+};
 
-const ProjectItem: React.FC<ProjectItemProps> = ({ imageUrl, videoUrl, name, description }) => {
+
+const ProjectItem: React.FC<ProjectItemProps> = ({
+                                                     imageUrl,
+                                                     videoUrl,
+                                                     name,
+                                                     description,
+                                                     githubUrl,
+                                                 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
@@ -24,9 +34,16 @@ const ProjectItem: React.FC<ProjectItemProps> = ({ imageUrl, videoUrl, name, des
                     <video src={videoUrl} autoPlay loop muted className={styles.projectItemImage} />
                 )}
             </div>
+
             <div className={styles.projectInfo}>
                 <h3 className={styles.projectName}>{name}</h3>
                 <p className={styles.projectDescription}>{description}</p>
+            </div>
+
+            <div className={styles.projectLinks}>
+                {githubUrl && (
+                    <IconLink icon={githubIcon} url={githubUrl} />
+                )}
             </div>
         </div>
     );
