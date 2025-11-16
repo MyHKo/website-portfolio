@@ -8,7 +8,7 @@ interface IconLinkProps {
 
 const IconLink: React.FC<IconLinkProps> = ({ icon, url }) => {
     const handleClick = () => {
-        window.open(url, '_blank'); // open in a new tab
+        window.open(url, '_blank');
     };
 
     return (
